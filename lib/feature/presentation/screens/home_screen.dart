@@ -11,6 +11,7 @@ import '../widgets/custom_dropdown_button_nationality.dart';
 import '../widgets/custom_dropdown_button_room.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_text_form_field.dart';
+import '../widgets/trap.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -42,23 +43,28 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.only(
-                          left: 20, bottom: 20, top: 20, right: 80),
-                      decoration: BoxDecoration(
-                        color: AppColors.blueColor,
-                        border:
-                            Border.all(color: AppColors.whiteColor, width: 2),
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.elliptical(100, 70),
+                    Row(
+                      children: [
+                        ClipPath(
+                          clipper: TrapezoidClipper(),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 15,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: AppColors.blueColor),
+                                color: AppColors.blueColor),
+                            child:  Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: CustomText(
+                                text: AppStrings.hotelSearch,
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      child: CustomText(
-                        text: AppStrings.hotelSearch,
-                        color: AppColors.whiteColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
+                      ],
                     ),
                     const SizedBox(
                       height: 5,
